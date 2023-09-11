@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Das Festhalten und Bewegen eines HTML-Elements</title>
+  </head>
+  <body></body>
+  <script>
+// 1. Statusvariable erstellen und auf "false" setzen
+let status = false;
+
+// 2. HTML-Element erstellen und gestalten
+const beweglichesElement = document.createElement("div");
+beweglichesElement.style.backgroundColor = "blue";
+beweglichesElement.style.width = "100px";
+beweglichesElement.style.height = "100px";
+beweglichesElement.textContent = "Beweg mich!";
+document.body.appendChild(beweglichesElement);
+
+// 3. Konstante für das HTML-Element erstellen
+const element = document.querySelector("div");
+
+// 4. Klickmoment-Ereignis an das HTML-Element binden
+element.addEventListener("mousedown", function() {
+    status = true;
+});
+
+// 5. Bewegen-Ereignis an den BODY-Element binden
+document.body.addEventListener("mousemove", function(event) {
+    if (status) {
+        element.style.position = "absolute";
+        element.style.left = `${event.pageX}px`;
+        element.style.top = `${event.pageY}px`;
+    }
+});
+
+// 6. Loslassen-Moment-Ereignis an das HTML-Element binden
+element.addEventListener("mouseup", function() {
+    status = false;
+});
+  </script>
+</html>
